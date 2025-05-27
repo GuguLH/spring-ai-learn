@@ -1,12 +1,13 @@
 package top.gugulh.ai.config;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.deepseek.DeepSeekChatModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class CommonConfig {
+public class ChatClientConfig {
 
     /**
      * 配置客户端
@@ -20,6 +21,7 @@ public class CommonConfig {
 
         return ChatClient.builder(model)
                 .defaultSystem(SYSTEM_PROMPT)
+                .defaultAdvisors(new SimpleLoggerAdvisor()) // 环绕增强,添加日志打印
                 .build();
     }
 }

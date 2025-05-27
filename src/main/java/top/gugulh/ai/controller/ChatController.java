@@ -2,10 +2,7 @@ package top.gugulh.ai.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
 @RestController
@@ -29,7 +26,7 @@ public class ChatController {
     /**
      * 使用WebFlux完成流式响应,前端类似打字机效果
      */
-    @GetMapping(value = "/chat-stream", produces = "text/html;charset=utf-8")
+    @PostMapping(value = "/chat-stream", produces = "text/html;charset=utf-8")
     public Flux<String> chatStream(@RequestParam(name = "prompt", required = true) String prompt) {
         return chatClient.prompt()
                 .user(prompt)

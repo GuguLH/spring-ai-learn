@@ -3,3 +3,8 @@ spring:
     name: spring-ai
   profiles:
     active: dev
+
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: debug
+    top.gugulh.ai: debug
