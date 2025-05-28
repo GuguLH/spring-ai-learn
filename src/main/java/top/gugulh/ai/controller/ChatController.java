@@ -1,11 +1,11 @@
 package top.gugulh.ai.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import top.gugulh.ai.repository.IChatHistoryRepository;
 
 @RestController
 @RequestMapping("/ai")
@@ -13,6 +13,9 @@ public class ChatController {
 
     @Autowired
     private ChatClient chatClient;
+
+    @Autowired
+    private IChatHistoryRepository chatHistoryRepository;
 
     /**
      * 阻塞式调用
@@ -33,6 +36,9 @@ public class ChatController {
             @RequestParam(name = "prompt", required = true) String prompt,
             @RequestParam(name = "chatId", required = true) String chatId
     ) {
+        // 1 保存会话id
+        chatHistoryRepository.save("chat", chatId);
+        // 2 发起请求
         return chatClient.prompt()
                 .user(prompt)
                 .advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID, chatId)) // 添加会话ID到Advisor上下文中

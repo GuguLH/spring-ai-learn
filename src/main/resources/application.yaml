@@ -2,7 +2,7 @@ spring:
   application:
     name: spring-ai
   profiles:
-    active: dev
+    active: prod
 
 logging:
   level:
