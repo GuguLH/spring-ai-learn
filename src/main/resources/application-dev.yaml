@@ -7,3 +7,11 @@ spring:
         options:
           model: deepseek-chat
           temperature: 0.2
+
+    openai:
+      base-url: your base url
+      api-key: your api key
+      chat:
+        options:
+          model: deepseek-chat
+          temperature: 0.2
