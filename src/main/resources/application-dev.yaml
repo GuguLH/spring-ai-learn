@@ -15,6 +15,13 @@ spring:
         options:
           model: deepseek-chat
           temperature: 0.2
+    zhipuai:
+      base-url: your base url
+      api-key: your api key
+      embedding:
+        options:
+          model: embedding-3
+          dimensions: 1024 # 维度1024
 
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
