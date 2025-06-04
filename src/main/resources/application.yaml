@@ -6,5 +6,5 @@ spring:
 
 logging:
   level:
-    org.springframework.ai.chat.client.advisor: debug
+    org.springframework.ai: debug
     top.gugulh.ai: debug
