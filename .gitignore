@@ -36,3 +36,5 @@ build/
 
 /src/main/resources/application-prod.yaml
 *.pdf
+chat-pdf.json
+chat-pdf.properties
