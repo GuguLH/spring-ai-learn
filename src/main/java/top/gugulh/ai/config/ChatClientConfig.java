@@ -7,6 +7,9 @@ import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.ai.deepseek.DeepSeekChatModel;
 import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.ai.vectorstore.SimpleVectorStore;
+import org.springframework.ai.vectorstore.VectorStore;
+import org.springframework.ai.zhipuai.ZhiPuAiEmbeddingModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import top.gugulh.ai.tools.CourseTools;
@@ -22,6 +25,14 @@ public class ChatClientConfig {
     @Bean
     public ChatMemory chatMemory() {
         return MessageWindowChatMemory.builder().build();
+    }
+
+    /**
+     * 配置Embedding模型
+     */
+    @Bean
+    public VectorStore vectorStore(ZhiPuAiEmbeddingModel embeddingModel) {
+        return SimpleVectorStore.builder(embeddingModel).build();
     }
 
     /**
