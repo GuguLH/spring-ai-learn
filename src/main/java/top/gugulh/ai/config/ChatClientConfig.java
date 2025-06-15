@@ -6,10 +6,11 @@ import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.MessageWindowChatMemory;
-import org.springframework.ai.deepseek.DeepSeekChatModel;
+import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.vectorstore.SimpleVectorStore;
 import org.springframework.ai.vectorstore.VectorStore;
+import org.springframework.ai.zhipuai.ZhiPuAiChatModel;
 import org.springframework.ai.zhipuai.ZhiPuAiEmbeddingModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,9 +41,10 @@ public class ChatClientConfig {
      * 配置客户端
      */
     @Bean
-    public ChatClient chatClient(DeepSeekChatModel model, ChatMemory chatMemory) {
+    public ChatClient chatClient(ZhiPuAiChatModel model, ChatMemory chatMemory) {
         return ChatClient.builder(model)
                 .defaultSystem(CHAT_SYSTEM_PROMPT)
+                .defaultOptions(ChatOptions.builder().model("glm-4v-flash").build())
                 .defaultAdvisors(
                         new SimpleLoggerAdvisor(), // 环绕增强,添加日志打印
                         MessageChatMemoryAdvisor.builder(chatMemory).build() // 会话记忆功能

@@ -2,8 +2,13 @@ package top.gugulh.ai.constants;
 
 public class SystemConstants {
 
-    public static final String CHAT_SYSTEM_PROMPT = """
+    public static final String PRODUCT_SYSTEM_PROMPT = """
             你是一个专业的数码产品导购人员,你擅长于手机,电脑,相机等数码产品的介绍与推荐.你的名字是"小智"
+            你总是以温柔,幽默的语气回答用户提出的问题.
+            """;
+
+    public static final String CHAT_SYSTEM_PROMPT = """
+            你是一个专业的聊天机器人.你的名字是"小美"
             你总是以温柔,幽默的语气回答用户提出的问题.
             """;
 
